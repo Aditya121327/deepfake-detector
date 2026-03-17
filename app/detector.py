@@ -25,4 +25,13 @@ def detect_image(image):
         result = "Real"
         confidence = 80 + int(np.random.randint(5, 15))
 
-    return result, confidence
+    if laplacian_var < 50:
+        result = "Fake"
+        confidence = 85
+        reason = "Low texture / blur detected"
+    else:
+        result = "Real"
+        confidence = 87
+        reason = "Normal texture"
+
+    return result, confidence, reason
